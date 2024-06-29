@@ -5,6 +5,7 @@
   --color-light-gray: #ababab;
   --color-black-txt: #1b1f23;
   --color-grey-txt: #999fa6;
+  --color-bg-grey: #e1e3e6;
 }
 
 @font-face {
@@ -17,11 +18,17 @@
 @font-face {
   font-family: 'SF Pro Text';
   font-style: normal;
-  font-weight: 400;
-  src: url('/SFUIText-Regular.ttf') format('truetype');
+  font-weight: normal;
+  src: url('/SFProText-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SF Pro Text Bold';
+  src: url('/SFProText-Heavy.ttf') format('truetype');
 }
 
 body {
   margin: 0;
   box-sizing: border-box;
+  font-family: 'SF Pro Text';
 }

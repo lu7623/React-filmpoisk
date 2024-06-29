@@ -1,25 +1,24 @@
 import styles from './index.module.css';
 import { filmpoiskAPI } from '../../services/filmService';
-import Loader from '../../components/loader/Loader';
+import FiltersPanel from '../../components/filters/FiltersPanel';
+import Card from '../../components/card/Card';
+import Input from '../../components/input/Input';
 
 export default function FilmsPage() {
-  const { data } = filmpoiskAPI.useGetFilmsSearchQuery({ limit: 3 });
+  const { data } = filmpoiskAPI.useGetFilmsSearchQuery({ limit: 10 });
 
   return (
     <>
-      <Loader />
-      <div className={styles.root}></div>
-      <h1>I am film FilmPage</h1>
-      {data &&
-        data.search_result.map((film) => {
-          return (
-            <>
-              <div>{film.title}</div>
-              <div>{film.genre}</div>
-              <div>{film.description}</div>
-            </>
-          );
-        })}
+      <main className={styles.background}>
+        <FiltersPanel />
+        <div className={styles.cardList}>
+          <Input />
+          {data &&
+            data.search_result.map((film) => (
+              <Card key={film.id} filmInfo={film} />
+            ))}
+        </div>
+      </main>
     </>
   );
 }
