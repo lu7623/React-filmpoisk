@@ -7,12 +7,6 @@ export const filmpoiskAPI = createApi({
   endpoints: (builder) => ({
     getFilmsList: builder.query<IResponse, void>({
       query: () => `/search`,
-      //   transformResponse: (resp: { flavor_text_entries: PokemonDesc[] }) =>
-      //     resp.flavor_text_entries
-      //       .filter((item: PokemonDesc) => {
-      //         return item.language.name === 'en';
-      //       })[0]
-      //       .flavor_text.replace(/[^a-zA-Z é . , ']/g, ' '),
     }),
     getFilmById: builder.query<FullMovieInfo, string>({
       query: (id: string) => `/movie/${id}`,
@@ -38,7 +32,6 @@ export const filmpoiskAPI = createApi({
           sort_by: sort_by,
         },
       }),
-      //   transformResponse: (resp: { results: PokemonType[] }) => resp.results,
     }),
   }),
 });

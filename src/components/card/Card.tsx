@@ -1,10 +1,15 @@
 import { ShortMovieInfo } from '@/api/types';
 import styles from './styles.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Card({ filmInfo }: { filmInfo: ShortMovieInfo }) {
+  const navigate = useNavigate();
   return (
     <>
-      <div className={styles.cardContainer}>
+      <div
+        className={styles.cardContainer}
+        onClick={() => navigate(`/film/${filmInfo.id}`)}
+      >
         <div
           className={styles.imgContainer}
           style={{ backgroundImage: `url(${filmInfo.poster})` }}

@@ -1,7 +1,7 @@
 .background {
   background-color: var(--color-bg-grey);
   width: full;
-  min-height: 100vh;
+  min-height: calc(100vh - 88px);
   display: flex;
   padding: 20px 32px;
   gap: 16px;

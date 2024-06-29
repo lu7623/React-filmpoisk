@@ -8,6 +8,7 @@
   height: 88px;
   background-color: var(--color-dark-grey);
   box-sizing: border-box;
+  margin: 0;
 }
 
 .title {
@@ -15,4 +16,5 @@
   font-size: 32px;
   font-weight: bold;
   font-family: 'Roboto';
+  margin: 0;
 }

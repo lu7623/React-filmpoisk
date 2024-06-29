@@ -5,7 +5,7 @@ import Card from '../../components/card/Card';
 import Input from '../../components/input/Input';
 
 export default function FilmsPage() {
-  const { data } = filmpoiskAPI.useGetFilmsSearchQuery({ limit: 10 });
+  const { data } = filmpoiskAPI.useGetFilmsSearchQuery({});
 
   return (
     <>
