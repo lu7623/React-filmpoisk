@@ -1,31 +1,40 @@
+import react from 'eslint-plugin-react';
+import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import typescriptParser from '@typescript-eslint/parser';
+import globals from 'globals';
+import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
+
 export default [
   {
-    root: true,
-    extends: [
-      'next/core-web-vitals',
-      'plugin:react/recommended',
-      'plugin:@typescript-eslint/recommended',
-      'plugin:react-hooks/recommended',
-      'prettier',
-    ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-      ecmaFeatures: {
-        jsx: true,
-      },
+    ignores: ['dist/**/*'],
+  },
+  {
+    files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
+    ignores: ['dist/**/*'],
+    ...reactRecommended,
+    settings: {
+      version: 'detect',
+    },
+    languageOptions: {
+      ...reactRecommended.languageOptions,
       ecmaVersion: 'latest',
       sourceType: 'module',
+      parser: typescriptParser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
+      },
     },
-    env: {
-      browser: true,
-      es6: true,
-      jest: true,
-      node: true,
+    plugins: {
+      '@typescript-eslint': typescriptEslint,
+      react,
     },
-    plugins: ['@typescript-eslint', 'react', 'react-hooks'],
     rules: {
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
       'comma-dangle': ['error', 'only-multiline'],
       'react/prop-types': 'off',
       'react/display-name': 'off',
@@ -39,12 +48,6 @@ export default [
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
       'no-console': 'error',
-    },
-    settings: {
-      react: {
-        pragma: 'React',
-        version: 'detect',
-      },
     },
   },
 ];
