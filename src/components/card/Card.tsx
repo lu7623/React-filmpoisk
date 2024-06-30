@@ -1,21 +1,21 @@
 import { ShortMovieInfo } from '@/api/types';
 import styles from './styles.module.css';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Score from '../score/Score';
 
 export default function Card({ filmInfo }: { filmInfo: ShortMovieInfo }) {
-  const navigate = useNavigate();
   return (
     <>
-      <div
-        className={styles.cardContainer}
-        onClick={() => navigate(`/film/${filmInfo.id}`)}
-      >
+      <div className={styles.cardContainer}>
         <div
           className={styles.imgContainer}
           style={{ backgroundImage: `url(${filmInfo.poster})` }}
         ></div>
         <div className={styles.infoContainer}>
-          <h3 className={styles.title}>{filmInfo.title}</h3>
+          <Score id={filmInfo.id} />
+          <Link to={`/film/${filmInfo.id}`} className={styles.title}>
+            {filmInfo.title}
+          </Link>
           <div className={styles.infoLine}>
             <p className={styles.tags}>Жанр</p>
             <p className={styles.infoText}>{filmInfo.genre}</p>

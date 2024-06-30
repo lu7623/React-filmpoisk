@@ -11,7 +11,7 @@ export default function FilmDetails({ film }: { film: ShortMovieInfo }) {
           style={{ backgroundImage: `url(${film.poster})` }}
         ></div>
         <div className={styles.infoContainer}>
-          <Score />
+          <Score id={film.id} />
           <h3 className={styles.title}>{film.title}</h3>
           <div className={styles.infoLine}>
             <p className={styles.tags}>Жанр:</p>

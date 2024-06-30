@@ -13,6 +13,7 @@
   flex-direction: column;
   width: fit-content;
   gap: 12px;
+  position: relative;
 }
 
 .imgContainer {
