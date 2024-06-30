@@ -2,6 +2,7 @@
   border: none;
   width: 400px;
   height: 40px;
+  min-height: 40px;
   padding-left: 30px;
   background: url('/Icons/icon-search.svg') no-repeat left;
   background-color: white;

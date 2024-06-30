@@ -3,10 +3,32 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 24px;
-  gap: 20px;
+  min-width: 408px;
   width: 408px;
   height: 232px;
   background: #ffffff;
   border-radius: 8px;
   font-family: 'SF Pro Text';
+}
+
+.select {
+  width: 360px;
+  border-radius: 8px;
+  height: 40px;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0 0 20px 0;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.variant {
+  margin: 0;
+  line-height: 20px;
+  font-size: 14px;
+  padding-bottom: 8px;
 }

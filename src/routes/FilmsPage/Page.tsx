@@ -142,13 +142,13 @@ export default function FilmsPage() {
               </p>
             </div>
           )}
+          <Pagination
+            page={search.page || 1}
+            maxPage={(data && data.total_pages) || 1}
+            moveLeft={prevPage}
+            moveRight={nextPage}
+          />
         </div>
-        <Pagination
-          page={search.page || 1}
-          maxPage={(data && data.total_pages) || 1}
-          moveLeft={prevPage}
-          moveRight={nextPage}
-        />
       </main>
     </>
   );
