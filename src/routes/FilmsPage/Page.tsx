@@ -6,11 +6,12 @@ import FiltersPanel from '../../components/filters/FiltersPanel';
 import Card from '../../components/card/Card';
 import useDebounce from '../../hooks/useDebounce';
 import Input from '../../components/input/Input';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import Pagination from '../../components/pagination/Pagination';
 
 export default function FilmsPage() {
   let [searchParams, setSearchParams] = useSearchParams();
-  const startState: IQueryParams = {};
+  const startState: IQueryParams = { page: 1 };
   if (searchParams.has('release_year'))
     startState.release_year = searchParams.get(
       'release_year'
@@ -35,7 +36,7 @@ export default function FilmsPage() {
       }));
     }
   };
-  const debounced = useDebounce(handleChange, 300);
+  const debounced = useDebounce(handleChange, 1000);
 
   const handleSelectYears = (event: React.ChangeEvent<HTMLSelectElement>) => {
     let val = event.target.value;
@@ -87,6 +88,33 @@ export default function FilmsPage() {
     }
   };
 
+  const prevPage = () => {
+    if (search.page && search.page > 1) {
+      let updatedValue = { page: search.page - 1 };
+      setSearch((prev) => ({
+        ...prev,
+        ...updatedValue,
+      }));
+    } else return;
+  };
+  const nextPage = () => {
+    let maxPage = (data && data.total_pages) || 1;
+    if (search.page) {
+      if (search.page < maxPage) {
+        let updatedValue = { page: search.page + 1 };
+        setSearch((prev) => ({
+          ...prev,
+          ...updatedValue,
+        }));
+      }
+    } else {
+      let updatedValue = { page: 2 };
+      setSearch((prev) => ({
+        ...prev,
+        ...updatedValue,
+      }));
+    }
+  };
   return (
     <>
       <main className={styles.background}>
@@ -109,6 +137,12 @@ export default function FilmsPage() {
             </div>
           )}
         </div>
+        <Pagination
+          page={search.page || 1}
+          maxPage={(data && data.total_pages) || 1}
+          moveLeft={prevPage}
+          moveRight={nextPage}
+        />
       </main>
     </>
   );

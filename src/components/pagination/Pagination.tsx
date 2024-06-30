@@ -1,9 +1,46 @@
 import styles from './styles.module.css';
 
-export default function Pagination() {
+export default function Pagination({
+  page,
+  maxPage,
+  moveLeft,
+  moveRight,
+}: {
+  page: number;
+  maxPage: number;
+  moveLeft: () => void;
+  moveRight: () => void;
+}) {
   return (
     <>
-      <nav className={styles.loader}></nav>
+      <nav className={styles.navContainer}>
+        <button
+          className={styles.button}
+          disabled={page === 1}
+          onClick={moveLeft}
+        >
+          <img
+            src="/Icons/arrow-left.svg"
+            width={16}
+            height={20}
+            className={styles.img}
+          />
+        </button>
+
+        <span>{page}</span>
+        <button
+          className={styles.button}
+          disabled={page === maxPage}
+          onClick={moveRight}
+        >
+          <img
+            src="/Icons/arrow-right.svg"
+            width={16}
+            height={20}
+            className={styles.img}
+          />
+        </button>
+      </nav>
     </>
   );
 }
