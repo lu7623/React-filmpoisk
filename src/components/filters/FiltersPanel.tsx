@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './styles.module.css';
-
+//import { GENRES, YEARS } from '@/api/types';
 const GENRES = {
   '0': 'Не выбран',
   comedy: 'Комедия',
@@ -48,7 +48,11 @@ export default function FiltersPanel({
           <p>Жанр</p>
           <select onChange={callbackGenres}>
             {Object.keys(GENRES).map((genre) => (
-              <option selected={checkedGenre == genre} value={genre}>
+              <option
+                key={genre}
+                selected={checkedGenre == genre}
+                value={genre}
+              >
                 {GENRES[genre as keyof typeof GENRES]}
               </option>
             ))}
@@ -58,7 +62,7 @@ export default function FiltersPanel({
           <p>Год выпуска</p>
           <select onChange={callbackYears}>
             {Object.keys(YEARS).map((year) => (
-              <option selected={checkedYear == year} value={year}>
+              <option key={year} selected={checkedYear == year} value={year}>
                 {YEARS[year as keyof typeof YEARS]}
               </option>
             ))}

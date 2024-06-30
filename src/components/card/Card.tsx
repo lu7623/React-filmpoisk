@@ -14,7 +14,6 @@ export default function Card({ filmInfo }: { filmInfo: ShortMovieInfo }) {
           className={styles.imgContainer}
           style={{ backgroundImage: `url(${filmInfo.poster})` }}
         ></div>
-
         <div className={styles.infoContainer}>
           <h3 className={styles.title}>{filmInfo.title}</h3>
           <div className={styles.infoLine}>

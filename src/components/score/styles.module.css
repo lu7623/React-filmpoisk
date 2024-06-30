@@ -1,0 +1,55 @@
+.ratingContainer {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: start;
+  justify-content: end;
+}
+
+.rating {
+  border: none;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+}
+
+.rating > label {
+  color: #90a0a3;
+  float: right;
+  width: 16px;
+  height: 16px;
+  background-image: url(/public/Icons/star.svg);
+  background-size: contain;
+  position: relative;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  background-image: url(/public/Icons/star-filled-grey.svg);
+}
+
+.rating > input:checked ~ label {
+  background-image: url(/public/Icons/star-filled.svg);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  background-image: url(/public/Icons/star-filled.svg);
+}
+
+.mark {
+  position: absolute;
+  top: 20px;
+  margin: 0 5px;
+  font-size: 14px;
+}

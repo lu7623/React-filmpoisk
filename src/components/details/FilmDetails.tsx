@@ -1,5 +1,6 @@
 import { ShortMovieInfo } from '@/api/types';
 import styles from './styles.module.css';
+import Score from '../score/Score';
 
 export default function FilmDetails({ film }: { film: ShortMovieInfo }) {
   return (
@@ -9,8 +10,8 @@ export default function FilmDetails({ film }: { film: ShortMovieInfo }) {
           className={styles.imgContainer}
           style={{ backgroundImage: `url(${film.poster})` }}
         ></div>
-
         <div className={styles.infoContainer}>
+          <Score />
           <h3 className={styles.title}>{film.title}</h3>
           <div className={styles.infoLine}>
             <p className={styles.tags}>Жанр:</p>
