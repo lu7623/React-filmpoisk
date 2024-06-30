@@ -1,14 +1,23 @@
 import styles from './index.module.css';
 import { filmpoiskAPI } from '../../services/filmService';
 import { useState } from 'react';
-import { IQueryParams } from '../../api/types';
+import { GENRES, IQueryParams, ShortMovieInfo, YEARS } from '../../api/types';
 import FiltersPanel from '../../components/filters/FiltersPanel';
 import Card from '../../components/card/Card';
 import useDebounce from '../../hooks/useDebounce';
 import Input from '../../components/input/Input';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export default function FilmsPage() {
-  const [search, setSearch] = useState<IQueryParams>({});
+  let [searchParams, setSearchParams] = useSearchParams();
+  const startState: IQueryParams = {};
+  if (searchParams.has('release_year'))
+    startState.release_year = searchParams.get(
+      'release_year'
+    ) as keyof typeof YEARS;
+  if (searchParams.has('genre'))
+    startState.genre = searchParams.get('genre') as keyof typeof GENRES;
+  const [search, setSearch] = useState<IQueryParams>(startState);
   const { data } = filmpoiskAPI.useGetFilmsSearchQuery(search);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,18 +35,79 @@ export default function FilmsPage() {
       }));
     }
   };
-
   const debounced = useDebounce(handleChange, 300);
+
+  const handleSelectYears = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    let val = event.target.value;
+    if (val !== '0') {
+      setSearchParams((params) => {
+        params.set('release_year', val);
+        return params;
+      });
+      let updatedValue = { release_year: val as keyof typeof YEARS };
+      setSearch((prev) => ({
+        ...prev,
+        ...updatedValue,
+      }));
+    } else {
+      setSearchParams((params) => {
+        params.delete('release_year');
+        return params;
+      });
+
+      const state = { ...search };
+      delete state.release_year;
+      setSearch(() => ({
+        ...state,
+      }));
+    }
+  };
+  const handleSelectGenres = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    let val = event.target.value;
+    if (val !== '0') {
+      setSearchParams((params) => {
+        params.set('genre', event.target.value);
+        return params;
+      });
+      let updatedValue = { genre: val as keyof typeof GENRES };
+      setSearch((prev) => ({
+        ...prev,
+        ...updatedValue,
+      }));
+    } else {
+      setSearchParams((params) => {
+        params.delete('genre');
+        return params;
+      });
+      const state = { ...search };
+      delete state.genre;
+      setSearch(() => ({
+        ...state,
+      }));
+    }
+  };
+
   return (
     <>
       <main className={styles.background}>
-        <FiltersPanel />
+        <FiltersPanel
+          callbackYears={handleSelectYears}
+          callbackGenres={handleSelectGenres}
+        />
         <div className={styles.cardList}>
           <Input callback={debounced} />
-          {data &&
-            data.search_result.map((film) => (
+          {data && data.search_result.length > 0 ? (
+            data.search_result.map((film: ShortMovieInfo) => (
               <Card key={film.id} filmInfo={film} />
-            ))}
+            ))
+          ) : (
+            <div className={styles.notFound}>
+              <p className={styles.notFoundMsg1}>Фильмы не найдены</p>
+              <p className={styles.notFoundMsg2}>
+                Измените запрос и попробуйте снова
+              </p>
+            </div>
+          )}
         </div>
       </main>
     </>

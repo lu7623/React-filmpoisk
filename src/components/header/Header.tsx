@@ -4,7 +4,7 @@ import styles from './header.module.css';
 export default function Header({ isAuthorized }: { isAuthorized: boolean }) {
   return (
     <>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <h1 className={styles.title}>Фильмопоиск</h1>
         {isAuthorized ? (
           <Button
@@ -22,7 +22,7 @@ export default function Header({ isAuthorized }: { isAuthorized: boolean }) {
             />
           </>
         )}
-      </div>
+      </header>
     </>
   );
 }
