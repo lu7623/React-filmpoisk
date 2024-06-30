@@ -8,6 +8,7 @@ import useDebounce from '../../hooks/useDebounce';
 import Input from '../../components/input/Input';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from '../../components/pagination/Pagination';
+import Loader from '../../components/loader/Loader';
 
 export default function FilmsPage() {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -19,7 +20,8 @@ export default function FilmsPage() {
   if (searchParams.has('genre'))
     startState.genre = searchParams.get('genre') as keyof typeof GENRES;
   const [search, setSearch] = useState<IQueryParams>(startState);
-  const { data } = filmpoiskAPI.useGetFilmsSearchQuery(search);
+  const { data, isLoading, isFetching } =
+    filmpoiskAPI.useGetFilmsSearchQuery(search);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value !== '') {
@@ -124,7 +126,11 @@ export default function FilmsPage() {
         />
         <div className={styles.cardList}>
           <Input callback={debounced} />
-          {data && data.search_result.length > 0 ? (
+          {isLoading || isFetching ? (
+            <div className={styles.load}>
+              <Loader />
+            </div>
+          ) : data && data.search_result.length > 0 ? (
             data.search_result.map((film: ShortMovieInfo) => (
               <Card key={film.id} filmInfo={film} />
             ))

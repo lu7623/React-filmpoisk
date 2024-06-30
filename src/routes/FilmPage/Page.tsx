@@ -3,18 +3,27 @@ import { filmpoiskAPI } from '../../services/filmService';
 import { useParams } from 'react-router-dom';
 import ActorsPanel from '../../components/actors/ActorsPanel';
 import FilmDetails from '../../components/details/FilmDetails';
+import Loader from '../../components/loader/Loader';
 
 export default function FilmPage() {
   const { filmId } = useParams();
-  const { data } = filmpoiskAPI.useGetFilmByIdQuery(filmId ? filmId : '');
+  const { data, isLoading, isFetching } = filmpoiskAPI.useGetFilmByIdQuery(
+    filmId ? filmId : ''
+  );
   return (
     <>
       <main className={styles.background}>
-        {data && (
-          <>
-            <FilmDetails film={data} />
-            <ActorsPanel actors={data.actors} />
-          </>
+        {isLoading || isFetching ? (
+          <div className={styles.load}>
+            <Loader />
+          </div>
+        ) : (
+          data && (
+            <>
+              <FilmDetails film={data} />
+              <ActorsPanel actors={data.actors} />
+            </>
+          )
         )}
       </main>
     </>

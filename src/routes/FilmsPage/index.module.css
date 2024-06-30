@@ -9,6 +9,7 @@
 
 .cardList {
   display: flex;
+  flex-grow: 2;
   flex-direction: column;
   gap: 20px;
   width: fit-content;
@@ -16,6 +17,12 @@
 
 .notFound {
   font-family: 'Roboto';
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .notFoundMsg1 {
@@ -27,4 +34,12 @@
 .notFoundMsg1 {
   font-size: 14px;
   color: var(--color-light-grey);
+}
+
+.load {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
