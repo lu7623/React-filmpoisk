@@ -13,7 +13,7 @@ export default function Button({
     <>
       <button
         className={`${styles.button} ${filled ? styles.filled : styles.default}`}
-        onClick={() => callback}
+        onClick={callback}
       >
         {text}
       </button>

@@ -1,26 +1,28 @@
+import { useState } from 'react';
 import Button from '../button/Button';
 import styles from './header.module.css';
 
-export default function Header({ isAuthorized }: { isAuthorized: boolean }) {
+export default function Header() {
+  const [isAuthorized, setIsAuthorized] = useState(true);
   return (
     <>
       <header className={styles.header}>
         <h1 className={styles.title}>Фильмопоиск</h1>
         {isAuthorized ? (
-          <Button
-            callback={() => alert('hello')}
-            filled={true}
-            text={'Войти'}
-          />
-        ) : (
-          <>
-            <img src={'/Icons/icon-user.svg'} />
+          <div className={styles.userContainer}>
+            <div className={styles.img} />
             <Button
-              callback={() => alert('hello')}
+              callback={() => setIsAuthorized(false)}
               filled={false}
               text={'Выйти'}
             />
-          </>
+          </div>
+        ) : (
+          <Button
+            callback={() => setIsAuthorized(true)}
+            filled={true}
+            text={'Войти'}
+          />
         )}
       </header>
     </>

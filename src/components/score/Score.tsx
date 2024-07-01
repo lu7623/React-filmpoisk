@@ -10,7 +10,6 @@ export default function Score({ id }: { id: string }) {
       className={styles.ratingContainer}
       onClick={(e) => {
         e.stopPropagation();
-        e.preventDefault();
       }}
     >
       <div className={styles.rating}>
@@ -23,8 +22,7 @@ export default function Score({ id }: { id: string }) {
                 type="radio"
                 name="rating"
                 value={currentRating}
-                onChange={(e) => {
-                  e.stopPropagation();
+                onChange={() => {
                   setRating(currentRating);
                 }}
               />
