@@ -6,16 +6,14 @@ import Score from '../score/Score';
 export default function Card({ filmInfo }: { filmInfo: ShortMovieInfo }) {
   return (
     <>
-      <div className={styles.cardContainer}>
+      <Link to={`/film/${filmInfo.id}`} className={styles.cardContainer}>
         <div
           className={styles.imgContainer}
           style={{ backgroundImage: `url(${filmInfo.poster})` }}
         ></div>
         <div className={styles.infoContainer}>
           <Score id={filmInfo.id} />
-          <Link to={`/film/${filmInfo.id}`} className={styles.title}>
-            {filmInfo.title}
-          </Link>
+          <h3 className={styles.title}>{filmInfo.title}</h3>
           <div className={styles.infoLine}>
             <p className={styles.tags}>Жанр</p>
             <p className={styles.infoText}>{filmInfo.genre}</p>
@@ -29,7 +27,7 @@ export default function Card({ filmInfo }: { filmInfo: ShortMovieInfo }) {
             <p className={styles.infoText}>{filmInfo.description}</p>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 }

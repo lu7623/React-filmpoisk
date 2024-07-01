@@ -6,7 +6,13 @@ export default function Score({ id }: { id: string }) {
   const [hover, setHover] = useState<number | null>(null);
 
   return (
-    <div className={styles.ratingContainer}>
+    <div
+      className={styles.ratingContainer}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+      }}
+    >
       <div className={styles.rating}>
         {[...Array(5)].map((_, index) => {
           const currentRating = index + 1;
@@ -17,7 +23,10 @@ export default function Score({ id }: { id: string }) {
                 type="radio"
                 name="rating"
                 value={currentRating}
-                onChange={() => setRating(currentRating)}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  setRating(currentRating);
+                }}
               />
               <div
                 className={styles.label}
