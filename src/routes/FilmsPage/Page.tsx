@@ -123,7 +123,7 @@ export default function FilmsPage() {
           callbackGenres={handleSelectGenres}
         />
         <div className={styles.cardList}>
-          <Input callback={debounced} />
+          <Input callback={debounced} placeholder="Название фильма" />
           {isLoading || isFetching ? (
             <div className={styles.load}>
               <Loader />
