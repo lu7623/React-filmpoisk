@@ -1,58 +1,119 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './styles.module.css';
-import { GENRES, YEARS } from '../../api/types';
-import { FC } from 'react';
+
+import { FC, useEffect, useRef, useState } from 'react';
 
 type FiltersProps = {
-  callbackYears: (val: React.ChangeEvent<HTMLSelectElement>) => void;
-  callbackGenres: (val: React.ChangeEvent<HTMLSelectElement>) => void;
+  callbackYears: (val: yearsOption) => void;
+  callbackGenres: (val: genresOption) => void;
 };
+
 
 export const FiltersPanel: FC<FiltersProps> = ({
   callbackYears,
   callbackGenres,
-}) => {
+})=>{
+type yearsOption = keyof typeof YEARS;
+type genresOption = keyof typeof GENRES;
+
+  const inputYearRef = useRef<HTMLInputElement>(null);
+  const inputGenreRef = useRef<HTMLInputElement>(null);
   let [searchParams] = useSearchParams();
-  let checkedYear: keyof typeof YEARS, checkedGenre: keyof typeof GENRES;
+  const [showYears, setShowYears] = useState(false);
+  const [showGenres, setShowGenres] = useState(false);
+  let checkedYear: yearsOption, checkedGenre: genresOption;
 
-  if (searchParams.has('release_year'))
-    checkedYear = searchParams.get('release_year') as keyof typeof YEARS;
+  useEffect(() => {
+    if (searchParams.has('release_year')) {
+      checkedYear = searchParams.get('release_year') as yearsOption;
+      inputYearRef.current && (inputYearRef.current.value = YEARS[checkedYear]);
+    }
+    if (searchParams.has('genre')) {
+      checkedGenre = searchParams.get('genre') as genresOption;
+      inputGenreRef.current &&
+        (inputGenreRef.current.value = GENRES[checkedGenre]);
+    }
+  }, []);
 
-  if (searchParams.has('genre'))
-    checkedGenre = searchParams.get('genre') as keyof typeof GENRES;
+
   return (
     <>
       <section className={styles.filterContainer}>
         <h3 className={styles.title}>Фильтр</h3>
         <div className={styles.selectItem}>
           <p className={styles.variant}>Жанр</p>
-          <select onChange={callbackGenres} className={styles.select}>
-            {Object.keys(GENRES).map((genre) => (
-              <option
-                key={genre}
-                selected={checkedGenre == genre}
-                value={genre}
-                className={styles.option}
-              >
-                {GENRES[genre as keyof typeof GENRES]}
-              </option>
-            ))}
-          </select>
+          <input
+            onClick={() => setShowGenres(true)}
+            style={
+              showGenres
+                ? {
+                    background: "url('/Icons/select-icon.svg') no-repeat 340px",
+                  }
+                : {
+                    background:
+                      "url('/Icons/arrow-square-down.svg') no-repeat 340px",
+                  }
+            }
+            className={styles.select}
+            ref={inputGenreRef}
+            placeholder="Выберите жанр"
+          />
+          {showGenres && (
+            <div className={styles.optionContainer}>
+              {Object.keys(GENRES).map((genre) => (
+                <div
+                  key={genre}
+                  onClick={() => {
+                    setShowGenres(false);
+                    callbackGenres(genre as genresOption);
+                    inputGenreRef.current &&
+                      (inputGenreRef.current.value =
+                        GENRES[genre as genresOption]);
+                  }}
+                  className={styles.option}
+                >
+                  {GENRES[genre as genresOption]}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className={styles.selectItem}>
           <p className={styles.variant}>Год выпуска</p>
-          <select onChange={callbackYears} className={styles.select}>
-            {Object.keys(YEARS).map((year) => (
-              <option
-                key={year}
-                selected={checkedYear == year}
-                value={year}
-                className={styles.option}
-              >
-                {YEARS[year as keyof typeof YEARS]}
-              </option>
-            ))}
-          </select>
+          <input
+            onClick={() => setShowYears(true)}
+            style={
+              showGenres
+                ? {
+                    background: "url('/Icons/select-icon.svg') no-repeat 340px",
+                  }
+                : {
+                    background:
+                      "url('/Icons/arrow-square-down.svg') no-repeat 340px",
+                  }
+            }
+            className={styles.select}
+            ref={inputYearRef}
+            placeholder="Выберите год"
+          />
+          {showYears && (
+            <div className={styles.optionContainer}>
+              {Object.keys(YEARS).map((year) => (
+                <div
+                  key={year}
+                  onClick={() => {
+                    setShowYears(false);
+                    callbackYears(year as yearsOption);
+                    inputYearRef.current &&
+                      (inputYearRef.current.value = YEARS[year as yearsOption]);
+                  }}
+                  className={styles.option}
+                >
+                  {YEARS[year as yearsOption]}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>
