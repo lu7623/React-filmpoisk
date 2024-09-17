@@ -1,16 +1,18 @@
 import styles from './index.module.css';
-import { filmpoiskAPI } from '../../services/filmService';
-import { useState } from 'react';
-import { GENRES, IQueryParams, ShortMovieInfo, YEARS } from '../../api/types';
-import FiltersPanel from '../../components/filters/FiltersPanel';
-import Card from '../../components/card/Card';
-import useDebounce from '../../hooks/useDebounce';
-import Input from '../../components/input/Input';
-import { useSearchParams } from 'react-router-dom';
-import Pagination from '../../components/pagination/Pagination';
-import Loader from '../../components/loader/Loader';
 
-export default function FilmsPage() {
+import { filmpoiskAPI } from '../../api/services/filmService';
+import { useState } from 'react';
+import useDebounce from '../../hooks/useDebounce';
+import { GENRES, IQueryParams, ShortMovieInfo, YEARS } from '../../api/types';
+
+import { FiltersPanel } from '../../components/filters/FiltersPanel';
+import { Card } from '../../components/card/Card';
+import { Input } from '../../components/input/Input';
+import { useSearchParams } from 'react-router-dom';
+import { Pagination } from '../../components/pagination/Pagination';
+import { Loader } from '../../components/loader/Loader';
+
+export const FilmsPage = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   const startState: IQueryParams = { page: 1 };
   if (searchParams.has('release_year'))
@@ -150,4 +152,4 @@ export default function FilmsPage() {
       </main>
     </>
   );
-}
+};

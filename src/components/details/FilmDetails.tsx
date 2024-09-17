@@ -1,8 +1,13 @@
 import { ShortMovieInfo } from '@/api/types';
 import styles from './styles.module.css';
-import Score from '../score/Score';
+import { Score } from '../score/Score';
+import { FC } from 'react';
 
-export default function FilmDetails({ film }: { film: ShortMovieInfo }) {
+type DetailsProps = {
+  film: ShortMovieInfo;
+};
+
+export const FilmDetails: FC<DetailsProps> = ({ film }) => {
   return (
     <>
       <div className={styles.cardContainer}>
@@ -33,4 +38,4 @@ export default function FilmDetails({ film }: { film: ShortMovieInfo }) {
       </div>
     </>
   );
-}
+};

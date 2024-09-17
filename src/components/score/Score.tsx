@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './styles.module.css';
 
-export default function Score({ id }: { id: string }) {
+type ScoreProps = {
+  id: string;
+};
+
+export const Score: FC<ScoreProps> = ({ id }) => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState<number | null>(null);
 
@@ -48,4 +52,4 @@ export default function Score({ id }: { id: string }) {
       </div>
     </div>
   );
-}
+};

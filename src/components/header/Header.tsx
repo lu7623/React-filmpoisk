@@ -1,9 +1,16 @@
-import { useState } from 'react';
-import Button from '../button/Button';
+import { FC } from 'react';
+import { Button } from '../button/Button';
 import styles from './header.module.css';
 
-export default function Header({ callback }: { callback: () => void }) {
+
+type HeaderProps = {
+ callback: () => void
+};
+
+export const Header: FC<HeaderProps> = ({ callback }) => {
+
   const [isAuthorized, setIsAuthorized] = useState(false);
+
   return (
     <>
       <header className={styles.header}>
@@ -32,4 +39,4 @@ export default function Header({ callback }: { callback: () => void }) {
       </header>
     </>
   );
-}
+};
