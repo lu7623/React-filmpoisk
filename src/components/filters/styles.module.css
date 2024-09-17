@@ -73,3 +73,16 @@
   background-color: var(--color-bg-grey);
   cursor: pointer;
 }
+
+.btnOpen {
+  background: url('/Icons/select-icon.svg') no-repeat 340px;
+}
+
+.btnClose {
+  background: url('/Icons/arrow-square-down.svg') no-repeat 340px;
+}
+
+.btnClose:hover,
+.btnOpen:hover {
+  cursor: pointer;
+}

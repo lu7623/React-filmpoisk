@@ -12,6 +12,10 @@
   text-align: center;
 }
 
+.button:hover {
+  cursor: pointer;
+}
+
 .filled {
   background-color: var(--color-orange);
   color: white;

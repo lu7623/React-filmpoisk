@@ -1,14 +1,12 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Button } from '../button/Button';
 import styles from './header.module.css';
 
-
 type HeaderProps = {
- callback: () => void
+  callback: () => void;
 };
 
 export const Header: FC<HeaderProps> = ({ callback }) => {
-
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   return (

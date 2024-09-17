@@ -26,6 +26,10 @@
   background-size: contain;
 }
 
+.closeButton:hover {
+  cursor: pointer;
+}
+
 .input {
   padding-left: 30px;
   display: flex;

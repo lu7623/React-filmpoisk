@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '../button/Button';
+import { Button } from '../button/Button';
 import styles from './styles.module.css';
 
 interface FormState {

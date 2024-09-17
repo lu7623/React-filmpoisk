@@ -1,21 +1,20 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './styles.module.css';
-
 import { FC, useEffect, useRef, useState } from 'react';
+import { GENRES, YEARS } from '../../api/types';
+
+type yearsOption = keyof typeof YEARS;
+type genresOption = keyof typeof GENRES;
 
 type FiltersProps = {
   callbackYears: (val: yearsOption) => void;
   callbackGenres: (val: genresOption) => void;
 };
 
-
 export const FiltersPanel: FC<FiltersProps> = ({
   callbackYears,
   callbackGenres,
-})=>{
-type yearsOption = keyof typeof YEARS;
-type genresOption = keyof typeof GENRES;
-
+}) => {
   const inputYearRef = useRef<HTMLInputElement>(null);
   const inputGenreRef = useRef<HTMLInputElement>(null);
   let [searchParams] = useSearchParams();
@@ -35,7 +34,6 @@ type genresOption = keyof typeof GENRES;
     }
   }, []);
 
-
   return (
     <>
       <section className={styles.filterContainer}>
@@ -43,18 +41,8 @@ type genresOption = keyof typeof GENRES;
         <div className={styles.selectItem}>
           <p className={styles.variant}>Жанр</p>
           <input
-            onClick={() => setShowGenres(true)}
-            style={
-              showGenres
-                ? {
-                    background: "url('/Icons/select-icon.svg') no-repeat 340px",
-                  }
-                : {
-                    background:
-                      "url('/Icons/arrow-square-down.svg') no-repeat 340px",
-                  }
-            }
-            className={styles.select}
+            onClick={() => setShowGenres(!showGenres)}
+            className={`${styles.select} ${showGenres ? styles.btnOpen : styles.btnClose}`}
             ref={inputGenreRef}
             placeholder="Выберите жанр"
           />
@@ -81,18 +69,8 @@ type genresOption = keyof typeof GENRES;
         <div className={styles.selectItem}>
           <p className={styles.variant}>Год выпуска</p>
           <input
-            onClick={() => setShowYears(true)}
-            style={
-              showGenres
-                ? {
-                    background: "url('/Icons/select-icon.svg') no-repeat 340px",
-                  }
-                : {
-                    background:
-                      "url('/Icons/arrow-square-down.svg') no-repeat 340px",
-                  }
-            }
-            className={styles.select}
+            onClick={() => setShowYears(!showYears)}
+            className={`${styles.select} ${showYears ? styles.btnOpen : styles.btnClose}`}
             ref={inputYearRef}
             placeholder="Выберите год"
           />
