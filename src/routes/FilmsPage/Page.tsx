@@ -40,8 +40,7 @@ export default function FilmsPage() {
   };
   const debounced = useDebounce(handleChange, 1000);
 
-  const handleSelectYears = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    let val = event.target.value;
+  const handleSelectYears = (val: keyof typeof YEARS) => {
     if (val !== '0') {
       setSearchParams((params) => {
         params.set('release_year', val);
@@ -65,11 +64,10 @@ export default function FilmsPage() {
       }));
     }
   };
-  const handleSelectGenres = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    let val = event.target.value;
+  const handleSelectGenres = (val: keyof typeof GENRES) => {
     if (val !== '0') {
       setSearchParams((params) => {
-        params.set('genre', event.target.value);
+        params.set('genre', val);
         return params;
       });
       let updatedValue = { genre: val as keyof typeof GENRES };
@@ -125,7 +123,7 @@ export default function FilmsPage() {
           callbackGenres={handleSelectGenres}
         />
         <div className={styles.cardList}>
-          <Input callback={debounced} />
+          <Input callback={debounced} placeholder="Название фильма" />
           {isLoading || isFetching ? (
             <div className={styles.load}>
               <Loader />
