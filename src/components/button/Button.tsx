@@ -1,14 +1,13 @@
+import { FC } from 'react';
 import styles from './styles.module.css';
 
-export default function Button({
-  filled,
-  callback,
-  text,
-}: {
+type ButtonProps = {
   filled: boolean;
   callback: () => void;
   text: string;
-}) {
+};
+
+export const Button: FC<ButtonProps> = ({ filled, callback, text }) => {
   return (
     <>
       <button
@@ -19,4 +18,4 @@ export default function Button({
       </button>
     </>
   );
-}
+};

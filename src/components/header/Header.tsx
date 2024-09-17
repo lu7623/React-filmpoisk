@@ -1,9 +1,12 @@
-import { useState } from 'react';
-import Button from '../button/Button';
+import { FC } from 'react';
+import { Button } from '../button/Button';
 import styles from './header.module.css';
 
-export default function Header() {
-  const [isAuthorized, setIsAuthorized] = useState(true);
+type HeaderProps = {
+  isAuthorized: boolean;
+};
+
+export const Header: FC<HeaderProps> = ({ isAuthorized }) => {
   return (
     <>
       <header className={styles.header}>
@@ -11,20 +14,12 @@ export default function Header() {
         {isAuthorized ? (
           <div className={styles.userContainer}>
             <div className={styles.img} />
-            <Button
-              callback={() => setIsAuthorized(false)}
-              filled={false}
-              text={'Выйти'}
-            />
+            <Button callback={() => {}} filled={false} text={'Выйти'} />
           </div>
         ) : (
-          <Button
-            callback={() => setIsAuthorized(true)}
-            filled={true}
-            text={'Войти'}
-          />
+          <Button callback={() => {}} filled={true} text={'Войти'} />
         )}
       </header>
     </>
   );
-}
+};

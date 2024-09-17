@@ -1,43 +1,23 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './styles.module.css';
+import { GENRES, YEARS } from '@/api/types';
+import { FC } from 'react';
 
-const GENRES = {
-  '0': 'Не выбран',
-  comedy: 'Комедия',
-  drama: 'Драма',
-  action: 'Боевик',
-  thriller: 'Триллер',
-  horror: 'Ужасы',
-  family: 'Семейный',
-  cartoon: 'Анимированный',
-  fantasy: 'Фэнтези',
-  romance: 'Романтика',
-  adventure: 'Приключения',
-  musical: 'Мьюзикл',
-  war: 'Военный',
-};
-
-const YEARS = {
-  '0': 'Не выбран',
-  '2009': '2009',
-  '2008': '2008',
-  '2007': '2007',
-  '2006': '2006',
-  '1990-2005': '1990-2005',
-  '1950-1989': '1950-1989',
-};
-
-export default function FiltersPanel({
-  callbackYears,
-  callbackGenres,
-}: {
+type FiltersProps = {
   callbackYears: (val: React.ChangeEvent<HTMLSelectElement>) => void;
   callbackGenres: (val: React.ChangeEvent<HTMLSelectElement>) => void;
-}) {
+};
+
+export const FiltersPanel: FC<FiltersProps> = ({
+  callbackYears,
+  callbackGenres,
+}) => {
   let [searchParams] = useSearchParams();
   let checkedYear: keyof typeof YEARS, checkedGenre: keyof typeof GENRES;
+
   if (searchParams.has('release_year'))
     checkedYear = searchParams.get('release_year') as keyof typeof YEARS;
+
   if (searchParams.has('genre'))
     checkedGenre = searchParams.get('genre') as keyof typeof GENRES;
   return (
@@ -77,4 +57,4 @@ export default function FiltersPanel({
       </section>
     </>
   );
-}
+};

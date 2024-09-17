@@ -1,11 +1,11 @@
 import styles from './index.module.css';
-import { filmpoiskAPI } from '../../services/filmService';
+import { filmpoiskAPI } from '../../api/services/filmService';
 import { useParams } from 'react-router-dom';
-import ActorsPanel from '../../components/actors/ActorsPanel';
-import FilmDetails from '../../components/details/FilmDetails';
-import Loader from '../../components/loader/Loader';
+import { ActorsPanel } from '../../components/actors/ActorsPanel';
+import { FilmDetails } from '../../components/details/FilmDetails';
+import { Loader } from '../../components/loader/Loader';
 
-export default function FilmPage() {
+export const FilmPage = () => {
   const { filmId } = useParams();
   const { data, isLoading, isFetching } = filmpoiskAPI.useGetFilmByIdQuery(
     filmId ? filmId : ''
@@ -28,4 +28,4 @@ export default function FilmPage() {
       </main>
     </>
   );
-}
+};

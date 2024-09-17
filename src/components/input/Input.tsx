@@ -1,10 +1,11 @@
+import { FC } from 'react';
 import styles from './styles.module.css';
 
-export default function Input({
-  callback,
-}: {
+type InputProps = {
   callback: (val: React.ChangeEvent<HTMLInputElement>) => void;
-}) {
+};
+
+export const Input: FC<InputProps> = ({ callback }) => {
   return (
     <>
       <input
@@ -15,4 +16,4 @@ export default function Input({
       />
     </>
   );
-}
+};

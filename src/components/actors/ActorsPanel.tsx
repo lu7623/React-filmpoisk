@@ -1,7 +1,12 @@
+import { FC } from 'react';
 import { Actor } from '../../api/types';
 import styles from './styles.module.css';
 
-export default function ActorsPanel({ actors }: { actors: Actor[] }) {
+type ActorProps = {
+  actors: Actor[];
+};
+
+export const ActorsPanel: FC<ActorProps> = ({ actors }) => {
   return (
     <>
       <div className={styles.cardContainer}>
@@ -22,4 +27,4 @@ export default function ActorsPanel({ actors }: { actors: Actor[] }) {
       </div>
     </>
   );
-}
+};

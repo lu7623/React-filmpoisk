@@ -1,16 +1,19 @@
 import styles from './styles.module.css';
+import { FC } from 'react';
 
-export default function Pagination({
-  page,
-  maxPage,
-  moveLeft,
-  moveRight,
-}: {
+type PaginationProps = {
   page: number;
   maxPage: number;
   moveLeft: () => void;
   moveRight: () => void;
-}) {
+};
+
+export const Pagination: FC<PaginationProps> = ({
+  page,
+  maxPage,
+  moveLeft,
+  moveRight,
+}) => {
   return (
     <>
       <nav className={styles.navContainer}>
@@ -43,4 +46,4 @@ export default function Pagination({
       </nav>
     </>
   );
-}
+};

@@ -1,9 +1,14 @@
 import { ShortMovieInfo } from '@/api/types';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
-import Score from '../score/Score';
+import { Score } from '../score/Score';
+import { FC } from 'react';
 
-export default function Card({ filmInfo }: { filmInfo: ShortMovieInfo }) {
+type CardProps = {
+  filmInfo: ShortMovieInfo;
+};
+
+export const Card: FC<CardProps> = ({ filmInfo }) => {
   return (
     <>
       <Link to={`/film/${filmInfo.id}`} className={styles.cardContainer}>
@@ -30,4 +35,4 @@ export default function Card({ filmInfo }: { filmInfo: ShortMovieInfo }) {
       </Link>
     </>
   );
-}
+};

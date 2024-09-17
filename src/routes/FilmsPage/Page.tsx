@@ -1,14 +1,16 @@
 import styles from './index.module.css';
-import { filmpoiskAPI } from '../../services/filmService';
+
+import { filmpoiskAPI } from '../../api/services/filmService';
 import { useState } from 'react';
-import { GENRES, IQueryParams, ShortMovieInfo, YEARS } from '../../api/types';
-import FiltersPanel from '../../components/filters/FiltersPanel';
-import Card from '../../components/card/Card';
 import useDebounce from '../../hooks/useDebounce';
-import Input from '../../components/input/Input';
+import { GENRES, IQueryParams, ShortMovieInfo, YEARS } from '../../api/types';
+
+import { FiltersPanel } from '../../components/filters/FiltersPanel';
+import { Card } from '../../components/card/Card';
+import { Input } from '../../components/input/Input';
 import { useSearchParams } from 'react-router-dom';
-import Pagination from '../../components/pagination/Pagination';
-import Loader from '../../components/loader/Loader';
+import { Pagination } from '../../components/pagination/Pagination';
+import { Loader } from '../../components/loader/Loader';
 
 export default function FilmsPage() {
   let [searchParams, setSearchParams] = useSearchParams();
