@@ -12,7 +12,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Pagination } from '../../components/pagination/Pagination';
 import { Loader } from '../../components/loader/Loader';
 
-export default function FilmsPage() {
+export const FilmsPage = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   const startState: IQueryParams = { page: 1 };
   if (searchParams.has('release_year'))
@@ -154,4 +154,4 @@ export default function FilmsPage() {
       </main>
     </>
   );
-}
+};

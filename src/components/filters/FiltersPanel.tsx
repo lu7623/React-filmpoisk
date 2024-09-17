@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './styles.module.css';
-import { GENRES, YEARS } from '@/api/types';
+import { GENRES, YEARS } from '../../api/types';
 import { FC } from 'react';
 
 type FiltersProps = {
