@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Button } from '../button/Button';
 import styles from './styles.module.css';
 
@@ -7,7 +7,11 @@ interface FormState {
   password: string;
 }
 
-export default function Modal({ onClose }: { onClose: () => void }) {
+type ModalProps = {
+  onClose: () => void;
+};
+
+export const Modal: FC<ModalProps> = ({ onClose }) => {
   const [formData, setFormData] = useState<FormState>({
     login: '',
     password: '',
@@ -52,4 +56,4 @@ export default function Modal({ onClose }: { onClose: () => void }) {
       </form>
     </dialog>
   );
-}
+};

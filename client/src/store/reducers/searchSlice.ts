@@ -1,7 +1,7 @@
-import { Genres, IQueryParams, Years } from '../../api/types';
+import { Genres, QueryParams, Years } from '../../api/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initState: IQueryParams = {
+const initState: QueryParams = {
   order: 'desc',
   sort_by: 'rating',
   limit: 10,

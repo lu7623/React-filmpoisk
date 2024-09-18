@@ -1,6 +1,6 @@
 import styles from './index.module.css';
 
-import { filmpoiskAPI } from '../../api/services/filmService';
+import { filmpoiskAPI } from '../../api/services/filmpoiskAPI';
 import { useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import { GENRES, IQueryParams, ShortMovieInfo, YEARS } from '../../api/types';

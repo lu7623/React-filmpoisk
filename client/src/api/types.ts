@@ -29,7 +29,7 @@ type Order = 'asc' | 'desc';
 export type Genres = keyof typeof GENRES;
 export type Years = keyof typeof YEARS;
 
-export interface IQueryParams {
+export interface QueryParams {
   title?: string;
   genre?: Genres;
   release_year?: Years;
@@ -49,10 +49,10 @@ export type FullMovieInfo = {
   title: string;
   description: string;
   release_year: number;
-  poster: string; //base64 img
+  poster: string;
   genre: string;
-  rating: string; //float
-  total_rates_count: string; //int
+  rating: number;
+  total_rates_count: string; 
   actors: Actor[];
 };
 
@@ -61,7 +61,19 @@ export type ShortMovieInfo = Omit<
   'actors' | 'total_rates_count'
 >;
 
-export interface IResponse {
+export interface SearchResponse {
   search_result: ShortMovieInfo[];
   total_pages: number;
 }
+
+
+export type RateMovieRequest = {
+  movieId: string;
+  user_rate: number;
+};
+
+export type RateMovieResponse = {
+  movieId: string;
+  newAverageRate: number;
+  newTotalRatesCount: number;
+};

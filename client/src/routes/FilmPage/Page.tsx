@@ -1,5 +1,5 @@
 import styles from './index.module.css';
-import { filmpoiskAPI } from '../../api/services/filmService';
+import { filmpoiskAPI } from '../../api/services/filmpoiskAPI';
 import { useParams } from 'react-router-dom';
 import { ActorsPanel } from '../../components/actors/ActorsPanel';
 import { FilmDetails } from '../../components/details/FilmDetails';

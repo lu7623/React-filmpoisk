@@ -1,18 +1,27 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import searchReducer from './reducers/slice';
-import filmpoiskAPI from '../api/services/filmService';
+import { combineReducers, configureStore, Store } from '@reduxjs/toolkit';
+import searchReducer from './reducers/searchSlice';
+import filmpoiskAPI, { movieApiWithAuth } from '../api/services/filmpoiskAPI';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { authorizationAPI } from '@/api/services/authAPI';
+import { authorizationSlice } from './reducers/authSlice';
 
 const rootReducer = combineReducers({
   searchReducer,
   [filmpoiskAPI.reducerPath]: filmpoiskAPI.reducer,
+  [movieApiWithAuth.reducerPath]: movieApiWithAuth.reducer,
+  [authorizationAPI.reducerPath]: authorizationAPI.reducer,
+  authorization: authorizationSlice.reducer,
 });
 
-export const setupStore = () => {
+export const setupStore: () => Store = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(filmpoiskAPI.middleware),
+      getDefaultMiddleware().concat([
+        filmpoiskAPI.middleware,
+        movieApiWithAuth.middleware,
+        authorizationAPI.middleware,
+      ]),
   });
 };
 
