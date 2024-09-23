@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '../components/Header1/Header';
+import { Header } from '../components/Header/Header';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Modal } from '../components/Modal1/Modal';
+import { Modal } from '../components/Modal/Modal';
 import { useAppDispatch } from '../store/store';
 import { setIsAuthorized } from '../store/reducers/authSlice';
 

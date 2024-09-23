@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Button } from '../Button1/Button';
+import { Button } from '../Button/Button';
 import styles from './styles.module.css';
 import { useAppDispatch } from '../../store/store';
 import { loginUser } from '../../store/reducers/authSlice';

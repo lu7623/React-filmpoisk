@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button } from '../Button1/Button';
+import { Button } from '../Button/Button';
 import styles from './header.module.css';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { setIsAuthorized } from '../../store/reducers/authSlice';

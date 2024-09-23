@@ -1,7 +1,7 @@
 import { ShortMovieInfo } from '@/api/types';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
-import { Score } from '../Score1/Score';
+import { Score } from '../Score/Score';
 import { FC } from 'react';
 
 type CardProps = {

@@ -3,25 +3,27 @@ import styles from './index.module.css';
 import { filmpoiskAPI } from '../../api/services/filmpoiskAPI';
 import { useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
-import { GENRES, IQueryParams, ShortMovieInfo, YEARS } from '../../api/types';
-
+import { GENRES, QueryParams, ShortMovieInfo, YEARS } from '../../api/types';
 import { FiltersPanel } from '../../components/FiltersPanel/FiltersPanel';
-import { Card } from '../../components/Card1/Card';
-import { Input } from '../../components/Input1/Input';
+import { Card } from '../../components/Card/Card';
+import { Input } from '../../components/Input/Input';
 import { useSearchParams } from 'react-router-dom';
-import { Pagination } from '../../components/Pagination2/Pagination';
-import { Loader } from '../../components/Loader1/Loader';
+import { Pagination } from '../../components/Pagination/Pagination';
+import { Loader } from '../../components/Loader/Loader';
 
 export const FilmsPage = () => {
   let [searchParams, setSearchParams] = useSearchParams();
-  const startState: IQueryParams = { page: 1 };
+  const startState: QueryParams = { page: 1 };
+
   if (searchParams.has('release_year'))
     startState.release_year = searchParams.get(
       'release_year'
     ) as keyof typeof YEARS;
+
   if (searchParams.has('genre'))
     startState.genre = searchParams.get('genre') as keyof typeof GENRES;
-  const [search, setSearch] = useState<IQueryParams>(startState);
+
+  const [search, setSearch] = useState<QueryParams>(startState);
   const { data, isLoading, isFetching } =
     filmpoiskAPI.useGetFilmsSearchQuery(search);
 
