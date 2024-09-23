@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 
 type ButtonProps = {
   filled: boolean;
-  callback: () => void;
+  callback?: () => void;
   text: string;
 };
 

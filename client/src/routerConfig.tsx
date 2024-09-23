@@ -1,6 +1,6 @@
 import { FilmPage } from './routes/FilmPage/Page';
 import { FilmsPage } from './routes/FilmsPage/Page';
-import { RootLayout } from './routes/RootLayout/RootLayout';
+import { RootLayout } from './layouts/RootLayout';
 //import NotFound from './routes/components/NotFound';
 
 export const routerConfig = [

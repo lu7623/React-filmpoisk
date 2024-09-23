@@ -22,13 +22,14 @@ export const Modal: FC<ModalProps> = ({ onClose }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log( name, value)
+
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
- dispatch(loginUser(formData))
+ dispatch(loginUser(formData));
+ onClose();
   };
   return (
     <dialog className={styles.modalContainer}>
@@ -56,7 +57,7 @@ export const Modal: FC<ModalProps> = ({ onClose }) => {
           />
         </label>
         <div className={styles.buttonContainer}>
-          <Button filled={true} callback={() => {}} text="Войти" />
+          <Button filled={true}  text="Войти" />
           <Button filled={false} callback={onClose} text="Отменить" />
         </div>
       </form>

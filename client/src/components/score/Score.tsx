@@ -1,14 +1,25 @@
 import { FC, useState } from 'react';
 import styles from './styles.module.css';
+import { useAppSelector } from '../../store/store';
+import { useRateMovie } from '../../hooks/useRateMovie';
 
 type ScoreProps = {
   id: string;
 };
 
 export const Score: FC<ScoreProps> = ({ id }) => {
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState<number | null>(null);
 
+  const [hover, setHover] = useState<number | null>(null);
+  const {initialRating, rateMovie} = useRateMovie(id);
+  const [rating, setRating] = useState(initialRating);
+
+  const isAuthorized = useAppSelector(
+      (state) => state.authorization.isAuthorized
+  );
+
+  if (!isAuthorized) {
+      return null;
+  }
   return (
     <div
       className={styles.ratingContainer}
@@ -28,6 +39,7 @@ export const Score: FC<ScoreProps> = ({ id }) => {
                 value={currentRating}
                 onChange={() => {
                   setRating(currentRating);
+                  rateMovie(currentRating)
                 }}
               />
               <div
