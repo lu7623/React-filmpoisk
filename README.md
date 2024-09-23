@@ -4,7 +4,7 @@
 
 ### Features:
 
-- The user can log in;
+- The user can log in (with username: "admin" and password: "admin");
 - Service has 2 routes: the main page with a list of films and the film details page;
 - On the main page, the user can search for a film by title, filter by genre and year of release;
 - When clicking on a snippet, the film details page opens;
@@ -30,6 +30,4 @@
   - npm install
   - npm run dev
   - Open your browser and follow the link to the suggested localhost 
-
-### Production deployment:
 

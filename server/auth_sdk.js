@@ -12,7 +12,7 @@ const secretKey = "aufff";
 export function login(username, password) {
     if (!username || !password || username.length <= 0 || password.length <= 0)
         return;
-    if ((username === "admin" && password === "admin") || Math.random() > 0.3) {
+    if (username === "admin" && password === "admin")  {
         return generateToken({
             userId: (username.length % 3) + (1 + Math.ceil(Math.random() * 5)),
             exp: Math.floor(Date.now() / 1000) + 3600,
