@@ -6,6 +6,7 @@
   --color-black-txt: #1b1f23;
   --color-grey-txt: #999fa6;
   --color-bg-grey: #e1e3e6;
+  --color-bg-semi-transparent: rgba(0, 0, 0, 0.5);
 }
 
 @font-face {

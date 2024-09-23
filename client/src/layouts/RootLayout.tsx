@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { Modal } from '../components/Modal/Modal';
 import { useAppDispatch } from '../store/store';
 import { setIsAuthorized } from '../store/reducers/authSlice';
+import styles from './index.module.css';
 
 export const RootLayout = () => {
   const [showModal, setShowModal] = useState(false);
@@ -19,11 +20,19 @@ export const RootLayout = () => {
     <>
       <Header callback={() => setShowModal(true)} />
       <Outlet />
-      {showModal &&
-        createPortal(
-          <Modal onClose={() => setShowModal(false)} />,
-          document.body
-        )}
+      {showModal && (
+        <div
+          className={styles.background}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          {createPortal(
+            <Modal onClose={() => setShowModal(false)} />,
+            document.body
+          )}
+        </div>
+      )}
     </>
   );
 };

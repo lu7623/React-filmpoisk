@@ -1,5 +1,12 @@
 .background {
-  background-color: var(--color-light-gray);
-  width: full;
+  background-color: var(--color-bg-semi-transparent);
+  width: 100vw;
   height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  margin: 0;
+  overflow: hidden;
+  position: fixed;
 }
