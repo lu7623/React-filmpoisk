@@ -1,32 +1,25 @@
-import { combineReducers, configureStore, Store } from '@reduxjs/toolkit';
-import searchReducer from './reducers/searchSlice';
-import filmpoiskAPI, { movieApiWithAuth } from '../api/services/filmpoiskAPI';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { authorizationAPI } from '@/api/services/authAPI';
+import { useDispatch, useSelector } from 'react-redux';
+import { filmpoiskAPI, movieApiWithAuth } from '../api/services/filmpoiskAPI';
+import { configureStore } from '@reduxjs/toolkit';
 import { authorizationSlice } from './reducers/authSlice';
+import { authorizationAPI } from '../api/services/authAPI';
 
-const rootReducer = combineReducers({
-  searchReducer,
-  [filmpoiskAPI.reducerPath]: filmpoiskAPI.reducer,
-  [movieApiWithAuth.reducerPath]: movieApiWithAuth.reducer,
-  [authorizationAPI.reducerPath]: authorizationAPI.reducer,
-  authorization: authorizationSlice.reducer,
+export const store = configureStore({
+    reducer: {
+        [filmpoiskAPI.reducerPath]: filmpoiskAPI.reducer,
+        [movieApiWithAuth.reducerPath]: movieApiWithAuth.reducer,
+        [authorizationAPI.reducerPath]: authorizationAPI.reducer,
+        authorization: authorizationSlice.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat([
+          filmpoiskAPI.middleware,
+            movieApiWithAuth.middleware,
+            authorizationAPI.middleware,
+        ]),
 });
 
-export const setupStore: () => Store = () => {
-  return configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat([
-        filmpoiskAPI.middleware,
-        movieApiWithAuth.middleware,
-        authorizationAPI.middleware,
-      ]),
-  });
-};
-
-export type AppStore = ReturnType<typeof setupStore>;
-export type AppDispatch = AppStore['dispatch'];
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<typeof setupStore> =
-  useSelector;
+export const useAppSelector = useSelector.withTypes<RootState>();

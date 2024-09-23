@@ -12,6 +12,7 @@
   border-radius: 8px;
   border: none;
   box-sizing: border-box;
+  z-index: 100;
 }
 
 .closeButton {

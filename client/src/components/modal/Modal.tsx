@@ -1,9 +1,11 @@
 import { FC, useState } from 'react';
 import { Button } from '../button/Button';
 import styles from './styles.module.css';
+import { useAppDispatch } from '../../store/store';
+import { loginUser } from '../../store/reducers/authSlice';
 
 interface FormState {
-  login: string;
+  username: string;
   password: string;
 }
 
@@ -12,19 +14,21 @@ type ModalProps = {
 };
 
 export const Modal: FC<ModalProps> = ({ onClose }) => {
+  const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<FormState>({
-    login: '',
+    username: '',
     password: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log( name, value)
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(formData);
+ dispatch(loginUser(formData))
   };
   return (
     <dialog className={styles.modalContainer}>
@@ -34,6 +38,7 @@ export const Modal: FC<ModalProps> = ({ onClose }) => {
         <label className={styles.field}>
           <p className={styles.fieldName}>Логин</p>
           <input
+          name='username'
             required
             className={styles.input}
             onChange={handleChange}
@@ -43,6 +48,7 @@ export const Modal: FC<ModalProps> = ({ onClose }) => {
         <label className={styles.field}>
           <p className={styles.fieldName}>Пароль</p>
           <input
+          name='password'
             required
             className={styles.input}
             onChange={handleChange}

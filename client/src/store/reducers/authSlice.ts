@@ -1,15 +1,13 @@
 
-import { AuthorizationParams, loginUserMutation } from '@/api/services/authAPI';
+import { AuthorizationParams, loginUserMutation } from '../../api/services/authAPI';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface AuthorizationState {
-
+export interface AuthorizationState {
     isLoading: boolean;
     isAuthorized: boolean;
 }
 
 const initialState: AuthorizationState = {
-
     isLoading: false,
     isAuthorized: false,
 };

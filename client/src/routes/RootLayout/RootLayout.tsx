@@ -3,8 +3,8 @@ import {Header} from '../../components/header/Header';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Modal}  from '../../components/modal/Modal';
-import { useAppDispatch } from '@/store/store';
-import { setIsAuthorized } from '@/store/reducers/authSlice';
+import { useAppDispatch } from '../../store/store';
+import { setIsAuthorized } from '../../store/reducers/authSlice';
 
 export const RootLayout = () => {
   const [showModal, setShowModal] = useState(false);
