@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Button } from '../button/Button';
+import { Button } from '../Button1/Button';
 import styles from './styles.module.css';
 import { useAppDispatch } from '../../store/store';
 import { loginUser } from '../../store/reducers/authSlice';
@@ -28,8 +28,8 @@ export const Modal: FC<ModalProps> = ({ onClose }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
- dispatch(loginUser(formData));
- onClose();
+    dispatch(loginUser(formData));
+    onClose();
   };
   return (
     <dialog className={styles.modalContainer}>
@@ -39,7 +39,7 @@ export const Modal: FC<ModalProps> = ({ onClose }) => {
         <label className={styles.field}>
           <p className={styles.fieldName}>Логин</p>
           <input
-          name='username'
+            name="username"
             required
             className={styles.input}
             onChange={handleChange}
@@ -49,7 +49,7 @@ export const Modal: FC<ModalProps> = ({ onClose }) => {
         <label className={styles.field}>
           <p className={styles.fieldName}>Пароль</p>
           <input
-          name='password'
+            name="password"
             required
             className={styles.input}
             onChange={handleChange}
@@ -57,7 +57,7 @@ export const Modal: FC<ModalProps> = ({ onClose }) => {
           />
         </label>
         <div className={styles.buttonContainer}>
-          <Button filled={true}  text="Войти" />
+          <Button filled={true} text="Войти" />
           <Button filled={false} callback={onClose} text="Отменить" />
         </div>
       </form>

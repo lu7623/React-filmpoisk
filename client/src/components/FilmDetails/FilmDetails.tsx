@@ -1,6 +1,6 @@
 import { ShortMovieInfo } from '@/api/types';
 import styles from './styles.module.css';
-import { Score } from '../score/Score';
+import { Score } from '../Score1/Score';
 import { FC } from 'react';
 
 type DetailsProps = {

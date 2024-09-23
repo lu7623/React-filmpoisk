@@ -1,9 +1,9 @@
 import styles from './index.module.css';
 import { filmpoiskAPI } from '../../api/services/filmpoiskAPI';
 import { useParams } from 'react-router-dom';
-import { ActorsPanel } from '../../components/actors/ActorsPanel';
-import { FilmDetails } from '../../components/details/FilmDetails';
-import { Loader } from '../../components/loader/Loader';
+import { ActorsPanel } from '../../components/Actors1/ActorsPanel';
+import { FilmDetails } from '../../components/FilmDetails/FilmDetails';
+import { Loader } from '../../components/Loader1/Loader';
 
 export const FilmPage = () => {
   const { filmId } = useParams();

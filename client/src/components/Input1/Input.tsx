@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import styles from './styles.module.css';
 
-
 type InputProps = {
   callback: (val: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;

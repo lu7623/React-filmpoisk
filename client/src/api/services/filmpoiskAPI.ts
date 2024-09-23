@@ -1,7 +1,13 @@
-import { FullMovieInfo, QueryParams, RateMovieRequest, RateMovieResponse, SearchResponse } from '../types';
+import {
+  FullMovieInfo,
+  QueryParams,
+  RateMovieRequest,
+  RateMovieResponse,
+  SearchResponse,
+} from '../types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const BASE_URL = 'http://localhost:3030/api/v1'
+const BASE_URL = 'http://localhost:3030/api/v1';
 
 export const filmpoiskAPI = createApi({
   reducerPath: 'filmpoiskAPI',
@@ -41,63 +47,56 @@ export const filmpoiskAPI = createApi({
 const baseQueryWithAuth = fetchBaseQuery({
   baseUrl: BASE_URL,
   prepareHeaders: async (headers) => {
-      const accessToken = localStorage.getItem('token');
+    const accessToken = localStorage.getItem('token');
 
-      if (accessToken) {
-          headers.set('authorization', `Bearer ${accessToken}`);
-      }
+    if (accessToken) {
+      headers.set('authorization', `Bearer ${accessToken}`);
+    }
 
-      return headers;
+    return headers;
   },
 });
-
-
 
 export const movieApiWithAuth = createApi({
   reducerPath: 'authApi',
   baseQuery: baseQueryWithAuth,
   endpoints: (builder) => ({
-      rateMovie: builder.mutation<RateMovieResponse, RateMovieRequest>({
-          query: (request) => ({
-              url: 'rateMovie',
-              method: 'POST',
-              body: request,
-          }),
-          async onQueryStarted(request, { dispatch, queryFulfilled }) {
-              try {
-                  const {
-                      data: { newAverageRate, movieId },
-                  } = await queryFulfilled;
-
-                  const storedRatings = localStorage.getItem('ratings');
-                  const parsedObject = storedRatings
-                      ? JSON.parse(storedRatings)
-                      : {};
-
-                  parsedObject[movieId] = request.user_rate;
-                  localStorage.setItem('ratings',
-                      JSON.stringify(parsedObject)
-                  );
-
-                  dispatch(
-                    filmpoiskAPI.util.updateQueryData(
-                          'getFilmById',
-                          movieId,
-                          (draft) => {
-                              draft.rating = newAverageRate;
-                          }
-                      )
-                  );
-              } catch {
-                  throw new Error(
-                      `Error during pessimistic updates. MovieId: ${request.movieId}`
-                  );
-              }
-          },
+    rateMovie: builder.mutation<RateMovieResponse, RateMovieRequest>({
+      query: (request) => ({
+        url: 'rateMovie',
+        method: 'POST',
+        body: request,
       }),
+      async onQueryStarted(request, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { newAverageRate, movieId },
+          } = await queryFulfilled;
+
+          const storedRatings = localStorage.getItem('ratings');
+          const parsedObject = storedRatings ? JSON.parse(storedRatings) : {};
+
+          parsedObject[movieId] = request.user_rate;
+          localStorage.setItem('ratings', JSON.stringify(parsedObject));
+
+          dispatch(
+            filmpoiskAPI.util.updateQueryData(
+              'getFilmById',
+              movieId,
+              (draft) => {
+                draft.rating = newAverageRate;
+              }
+            )
+          );
+        } catch {
+          throw new Error(
+            `Error during pessimistic updates. MovieId: ${request.movieId}`
+          );
+        }
+      },
+    }),
   }),
 });
-
 
 export const { useRateMovieMutation } = movieApiWithAuth;
 

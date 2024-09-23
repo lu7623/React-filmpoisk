@@ -8,17 +8,16 @@ type ScoreProps = {
 };
 
 export const Score: FC<ScoreProps> = ({ id }) => {
-
   const [hover, setHover] = useState<number | null>(null);
-  const {initialRating, rateMovie} = useRateMovie(id);
+  const { initialRating, rateMovie } = useRateMovie(id);
   const [rating, setRating] = useState(initialRating);
 
   const isAuthorized = useAppSelector(
-      (state) => state.authorization.isAuthorized
+    (state) => state.authorization.isAuthorized
   );
 
   if (!isAuthorized) {
-      return null;
+    return null;
   }
   return (
     <div
@@ -39,7 +38,7 @@ export const Score: FC<ScoreProps> = ({ id }) => {
                 value={currentRating}
                 onChange={() => {
                   setRating(currentRating);
-                  rateMovie(currentRating)
+                  rateMovie(currentRating);
                 }}
               />
               <div

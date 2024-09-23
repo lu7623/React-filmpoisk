@@ -5,18 +5,18 @@ import { authorizationSlice } from './reducers/authSlice';
 import { authorizationAPI } from '../api/services/authAPI';
 
 export const store = configureStore({
-    reducer: {
-        [filmpoiskAPI.reducerPath]: filmpoiskAPI.reducer,
-        [movieApiWithAuth.reducerPath]: movieApiWithAuth.reducer,
-        [authorizationAPI.reducerPath]: authorizationAPI.reducer,
-        authorization: authorizationSlice.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat([
-          filmpoiskAPI.middleware,
-            movieApiWithAuth.middleware,
-            authorizationAPI.middleware,
-        ]),
+  reducer: {
+    [filmpoiskAPI.reducerPath]: filmpoiskAPI.reducer,
+    [movieApiWithAuth.reducerPath]: movieApiWithAuth.reducer,
+    [authorizationAPI.reducerPath]: authorizationAPI.reducer,
+    authorization: authorizationSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([
+      filmpoiskAPI.middleware,
+      movieApiWithAuth.middleware,
+      authorizationAPI.middleware,
+    ]),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

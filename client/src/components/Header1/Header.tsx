@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button } from '../button/Button';
+import { Button } from '../Button1/Button';
 import styles from './header.module.css';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { setIsAuthorized } from '../../store/reducers/authSlice';
@@ -9,7 +9,7 @@ type HeaderProps = {
 };
 
 export const Header: FC<HeaderProps> = ({ callback }) => {
-  const {isAuthorized}= useAppSelector(state => state.authorization)
+  const { isAuthorized } = useAppSelector((state) => state.authorization);
   const dispatch = useAppDispatch();
   return (
     <>
@@ -21,8 +21,8 @@ export const Header: FC<HeaderProps> = ({ callback }) => {
             <Button
               callback={() => {
                 if (isAuthorized) {
-                  localStorage.removeItem("token");
-                  dispatch(setIsAuthorized(false))
+                  localStorage.removeItem('token');
+                  dispatch(setIsAuthorized(false));
                 }
               }}
               filled={false}
@@ -33,7 +33,6 @@ export const Header: FC<HeaderProps> = ({ callback }) => {
           <Button
             callback={() => {
               callback();
-             
             }}
             filled={true}
             text={'Войти'}

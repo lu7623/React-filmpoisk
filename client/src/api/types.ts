@@ -52,7 +52,7 @@ export type FullMovieInfo = {
   poster: string;
   genre: string;
   rating: number;
-  total_rates_count: string; 
+  total_rates_count: string;
   actors: Actor[];
 };
 
@@ -65,7 +65,6 @@ export interface SearchResponse {
   search_result: ShortMovieInfo[];
   total_pages: number;
 }
-
 
 export type RateMovieRequest = {
   movieId: string;

@@ -5,12 +5,12 @@ import { useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import { GENRES, IQueryParams, ShortMovieInfo, YEARS } from '../../api/types';
 
-import { FiltersPanel } from '../../components/filters/FiltersPanel';
-import { Card } from '../../components/card/Card';
-import { Input } from '../../components/input/Input';
+import { FiltersPanel } from '../../components/FiltersPanel/FiltersPanel';
+import { Card } from '../../components/Card1/Card';
+import { Input } from '../../components/Input1/Input';
 import { useSearchParams } from 'react-router-dom';
-import { Pagination } from '../../components/pagination/Pagination';
-import { Loader } from '../../components/loader/Loader';
+import { Pagination } from '../../components/Pagination2/Pagination';
+import { Loader } from '../../components/Loader1/Loader';
 
 export const FilmsPage = () => {
   let [searchParams, setSearchParams] = useSearchParams();
