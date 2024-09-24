@@ -1,6 +1,6 @@
 # React Filmpoisk
 
-### Service with information related to films and TV shows including cast, plot summaries, production info and ratings.Includes both server with mock data and client side. As there are no database, user rating are stored in localStorage.
+### Service with information related to films and TV shows including cast, plot summaries, production info and ratings. Includes both server with mock films data and client side. As there are no database, user rating are stored in localStorage.
 
 ### Features:
 
