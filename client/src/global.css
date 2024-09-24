@@ -1,0 +1,35 @@
+:root {
+  --color-orange: #ff5500;
+  --color-orange-hover: #e94e00;
+  --color-dark-grey: #333333;
+  --color-light-gray: #ababab;
+  --color-black-txt: #1b1f23;
+  --color-grey-txt: #999fa6;
+  --color-bg-grey: #e1e3e6;
+  --color-bg-semi-transparent: rgba(0, 0, 0, 0.5);
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/SFProText-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SF Pro Text Bold';
+  src: url('/SFProText-Heavy.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'SF Pro Text';
+}

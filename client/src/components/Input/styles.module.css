@@ -1,0 +1,23 @@
+.input {
+  border: none;
+  width: 400px;
+  height: 40px;
+  min-height: 40px;
+  padding-left: 30px;
+  background: url('/Icons/icon-search.svg') no-repeat left;
+  background-color: white;
+  background-size: 16px;
+  background-position: 10px;
+  border-radius: 8px;
+}
+
+.input::placeholder {
+  color: var(--color-grey-txt);
+  font-size: 14px;
+  line-height: 16px;
+  opacity: 1;
+}
+
+.input:focus {
+  outline: none;
+}
